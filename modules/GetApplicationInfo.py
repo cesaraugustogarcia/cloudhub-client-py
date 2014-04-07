@@ -4,7 +4,7 @@ import json
 import pprint
 
 # Documentation: http://www.mulesoft.org/documentation/display/current/Get+Application
-def make_request(baseurl, app_name, cloudhub_user, cloudhub_pass):
+def make_request(app_name, cloudhub_user, cloudhub_pass):
 
 	baseurl = 'https://cloudhub.io/api/applications/'
 
