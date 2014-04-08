@@ -19,3 +19,9 @@ Doc: http://www.mulesoft.org/documentation/display/current/List+All+Applications
 ```
 python cloudhubClient.py getAllAplications accountUser accountPassword
 ```
+
+## Requirements
+
+### Python requests module
+
+How to install Docs: http://docs.python-requests.org/en/latest/user/install/
