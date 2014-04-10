@@ -2,7 +2,13 @@
 
 API Documentation: http://www.mulesoft.org/documentation/display/current/API
 
-### Get Application Info
++ [Methods](#getapplicationinfo)
+    * [Get Application Info](#getapplicationinfo)
+    * [Get All Applications](#getallapplications)
+    * [Update Application Metadata](#updateapplicationmetadata)
++ [Requirements](#requirements)
+
+### Get Application Info <a name="getapplicationinfo"/>
 
 Doc: http://www.mulesoft.org/documentation/display/current/Get+Application
 
@@ -11,7 +17,7 @@ Doc: http://www.mulesoft.org/documentation/display/current/Get+Application
 python cloudhubClient.py getApplicationInfo applicationDomain accountUser accountPassword
 ```
 
-### Get All Applications
+### Get All Applications <a name="getallapplications"/>
 
 Doc: http://www.mulesoft.org/documentation/display/current/List+All+Applications
 
@@ -20,7 +26,24 @@ Doc: http://www.mulesoft.org/documentation/display/current/List+All+Applications
 python cloudhubClient.py getAllAplications accountUser accountPassword
 ```
 
-## Requirements
+### Update Application Metadata <a name="updateapplicationmetadata"/>
+
+Doc: http://www.mulesoft.org/documentation/display/current/Update+Application+Metadata
+
+**Usage** 
+```
+python cloudhubClient.py updateApplicationMetada accountUser accountPassword appDomain propertiesFilePath
+```
+
+This method expects a properties file like
+```
+#Endpoints configuration
+propertyname.a=propertya
+propertyname.b=propertyb
+```
+
+
+## Requirements <a name="requirements"/>
 
 ### Python requests module
 
