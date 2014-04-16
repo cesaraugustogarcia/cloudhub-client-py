@@ -1,3 +1,4 @@
 # Ignoring files created by python module engine #
 
 **/*.pyc
+.idea/
