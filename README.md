@@ -32,7 +32,7 @@ python cloudhubClient.py getAllAplications cloudhubUser cloudhubPassword
 Doc: http://www.mulesoft.org/documentation/display/current/Update+Application+Metadata
 
 **Usage** 
-Lets now figure out we want to update the properties for an app that is placed in *https://fandermole.cloudhub.io/*. Then I should run the following command:
+Lets now figure out we want to update the properties for an app that is placed in ```https://fandermole.cloudhub.io/```. Then I should run the following command:
 ```
 python cloudhubClient.py updateApplicationMetada cloudhubUser cloudhubPassword fandermole propertiesFilePath
 ```
