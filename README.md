@@ -13,8 +13,9 @@ API Documentation: http://www.mulesoft.org/documentation/display/current/API
 Doc: http://www.mulesoft.org/documentation/display/current/Get+Application
 
 **Usage** 
+Lets say we want to get the belonging information for an app that placed in *https://fandermole.cloudhub.io/*. Then I should run the following command:
 ```
-python cloudhubClient.py getApplicationInfo applicationDomain accountUser accountPassword
+python cloudhubClient.py getApplicationInfo fandermole cloudhubUser cloudhubPassword
 ```
 
 ### Get All Applications <a name="getallapplications"/>
@@ -23,7 +24,7 @@ Doc: http://www.mulesoft.org/documentation/display/current/List+All+Applications
 
 **Usage** 
 ```
-python cloudhubClient.py getAllAplications accountUser accountPassword
+python cloudhubClient.py getAllAplications cloudhubUser cloudhubPassword
 ```
 
 ### Update Application Metadata <a name="updateapplicationmetadata"/>
@@ -31,11 +32,12 @@ python cloudhubClient.py getAllAplications accountUser accountPassword
 Doc: http://www.mulesoft.org/documentation/display/current/Update+Application+Metadata
 
 **Usage** 
+Lets now figure out we want to update the properties for an app that is placed in *https://fandermole.cloudhub.io/*. Then I should run the following command:
 ```
-python cloudhubClient.py updateApplicationMetada accountUser accountPassword appDomain propertiesFilePath
+python cloudhubClient.py updateApplicationMetada cloudhubUser cloudhubPassword fandermole propertiesFilePath
 ```
 
-This method expects a properties file like
+This method expects a properties file that should look like the following example:
 ```
 #Endpoints configuration
 propertyname.a=propertya
@@ -47,4 +49,9 @@ propertyname.b=propertyb
 
 ### Python requests module
 
-How to install Docs: http://docs.python-requests.org/en/latest/user/install/
+How to install Docs: http://docs.python-requests.org/en/latest/user/install/  
+
+Take into account that you may need to excecute the instalation using admin permissions; otherwise you could receive the following error message:
+```
+[Errno 13] Permission denied: '/Library/Python/2.7/site-packages/test-easy-install-2478.write-test'
+```
