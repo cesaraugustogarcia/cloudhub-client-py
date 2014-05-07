@@ -27,7 +27,7 @@ getAllApplications_parser.add_argument('-cloudhub_user',required=True)
 getAllApplications_parser.add_argument('-cloudhub_pass',required=True)
 getAllApplications_parser.set_defaults(func=GetAllApplications.make_request)
 
-deployApplication_parser = subparsers.add_parser('dam', help='Get Application Info method')
+deployApplication_parser = subparsers.add_parser('dam', help='Deploy Application method')
 deployApplication_parser.add_argument('-app_name',required=True)
 deployApplication_parser.add_argument('-cloudhub_user',required=True)
 deployApplication_parser.add_argument('-cloudhub_pass',required=True)
