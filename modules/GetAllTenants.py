@@ -15,7 +15,12 @@ cloudhub_pass = ""
 
 # Cloudhub operations
 def save_all_tenants():
-	response = requests.get(baseurl + app_domain + api_call_paths['tenants'], headers=headers, auth=(cloudhub_user, cloudhub_pass))
+	query_string  =  {
+	      "limit": 100,
+	      "offset": 0
+	}
+
+	response = requests.get(baseurl + app_domain + api_call_paths['tenants'], params=query_string, headers=headers, auth=(cloudhub_user, cloudhub_pass))
 
 	if (response.status_code == 200):
 		json_response = json.loads(response.text)

@@ -12,6 +12,7 @@ from modules import LoadTenant
 from modules import DeleteTenant
 from modules import UpdateTenant
 from modules import UpdateTenantStatus
+from modules import GetLogs
 
 parser = argparse.ArgumentParser()
 subparsers = parser.add_subparsers(title='subcommands',description='valid subcommands')
@@ -88,6 +89,20 @@ updateTenantStatus_parser.add_argument('-cloudhub_pass',required=True)
 updateTenantStatus_parser.add_argument('-tenant_id',required=True)
 updateTenantStatus_parser.add_argument('-status',required=True,help="Tenant status to be set (enabled or disabled).")
 updateTenantStatus_parser.set_defaults(func=UpdateTenantStatus.make_request)
+
+getLogs_parser = subparsers.add_parser('glo', help='Get logs for a CloudHub Application. Filters can be applied.')
+getLogs_parser.add_argument('-app_name',required=True)
+getLogs_parser.add_argument('-cloudhub_user',required=True)
+getLogs_parser.add_argument('-cloudhub_pass',required=True)
+getLogs_parser.add_argument('-tenant_id',required=False,default="")
+getLogs_parser.add_argument('-start_date',required=True,help="Enter date in this format: YYYY-mm-ddT00:00:00.000Z.")
+getLogs_parser.add_argument('-end_date',required=True,help="Enter date in this format: YYYY-mm-ddT00:00:00.000Z.")
+getLogs_parser.add_argument('-priority',required=False,default="INFO",help="The log level priority to return. Values are: DEBUG, INFO, WARN, ERROR, SYSTEM, CONSOLE.")
+getLogs_parser.add_argument('-message_filter',required=False,default="")
+getLogs_parser.add_argument('-output_format',required=False,default="CSV")
+getLogs_parser.add_argument('-cols',required=False,default="timestamp,message")
+getLogs_parser.add_argument('-max_size',required=False,default="512",help="Crop messages size. Default is 512 chars.")
+getLogs_parser.set_defaults(func=GetLogs.make_request)
 
 args = parser.parse_args()
 args.func(vars(args))
