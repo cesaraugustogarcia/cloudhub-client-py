@@ -4,6 +4,7 @@ import argparse
 
 from modules import GetApplicationInfo
 from modules import GetAllApplications
+from modules import DeployApplication
 from modules import GetNotifications
 from modules import GetSingleTenant
 from modules import GetAllTenants
@@ -26,6 +27,13 @@ getAllApplications_parser = subparsers.add_parser('gaa', help='Get All Applicati
 getAllApplications_parser.add_argument('-cloudhub_user',required=True)
 getAllApplications_parser.add_argument('-cloudhub_pass',required=True)
 getAllApplications_parser.set_defaults(func=GetAllApplications.make_request)
+
+deployApplication_parser = subparsers.add_parser('dam', help='Deploy Application method')
+deployApplication_parser.add_argument('-app_name',required=True)
+deployApplication_parser.add_argument('-cloudhub_user',required=True)
+deployApplication_parser.add_argument('-cloudhub_pass',required=True)
+deployApplication_parser.add_argument('-file_path',required=True)
+deployApplication_parser.set_defaults(func=DeployApplication.make_request)
 
 getNotifications_parser = subparsers.add_parser('gno', help='Get notifications for a CloudHub Application. Filters can be applied.')
 getNotifications_parser.add_argument('-app_name',required=True)
