@@ -5,6 +5,7 @@ import argparse
 from modules import GetApplicationInfo
 from modules import GetAllApplications
 from modules import DeployApplication
+from modules import UpdateApplicationMetadata
 from modules import GetNotifications
 from modules import GetSingleTenant
 from modules import GetAllTenants
@@ -29,9 +30,9 @@ getAllApplications_parser = subparsers.add_parser('gaa', help='Get All Applicati
 getAllApplications_parser.set_defaults(func=GetAllApplications.make_request)
 
 updateApplicationMetaData_parser = subparsers.add_parser('uam', help='Update Application metadata',parents=[credentials_parser])
-updateApplicationMetaData.add_argument('-a','--app_name',required=True)
-updateApplicationMetaData.add_argument('--properties_path',required=True)
-updateApplicationMetaData.set_defaults(func=DeployApplication.make_request)
+updateApplicationMetaData_parser.add_argument('-a','--app_name',required=True)
+updateApplicationMetaData_parser.add_argument('--properties_path',required=True)
+updateApplicationMetaData_parser.set_defaults(func=UpdateApplicationMetadata.make_request)
 
 deployApplication_parser = subparsers.add_parser('dam', help='Deploy Application method',parents=[credentials_parser])
 deployApplication_parser.add_argument('-a','--app_name',required=True)
