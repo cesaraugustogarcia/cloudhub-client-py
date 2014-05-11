@@ -19,23 +19,23 @@ parser = argparse.ArgumentParser(epilog="More info on each subcommand try: 'pyth
 subparsers = parser.add_subparsers(title='subcommands')
 
 credentials_parser = argparse.ArgumentParser(add_help=False)
-credentials_parser.add_argument('-u',metavar='cloudhub_user',dest='cloudhub_user',required=True)
-credentials_parser.add_argument('-p',metavar='cloudhub_pass',dest='cloudhub_pass',required=True)
-credentials_parser.add_argument('-a',metavar='app_name',dest='app_name',required=True)
+credentials_parser.add_argument('-u',metavar='CLOUDHUB_USER',dest='cloudhub_user',required=True)
+credentials_parser.add_argument('-p',metavar='CLODHUB_PASS',dest='cloudhub_pass',required=True)
+credentials_parser.add_argument('-a',metavar='APP_NAME',dest='app_name',required=True)
 
-getAllApplications_parser = subparsers.add_parser('gaa', help='Get All Applications method')
+getAllApplications_parser = subparsers.add_parser('gaa', help='Get All Applications', description='The GET operation specified with the /api/applications resource returns a list of all applications for your account. The resulting JSON contains a list of application objects.')
 getAllApplications_parser.add_argument('-u',metavar='cloudhub_user',dest='cloudhub_user',required=True)
 getAllApplications_parser.add_argument('-p',metavar='cloudhub_pass',dest='cloudhub_pass',required=True)
 getAllApplications_parser.set_defaults(func=GetAllApplications.make_request)
 
-getApplicationInfo_parser = subparsers.add_parser('gai', help='Get Application Info method',parents=[credentials_parser])
+getApplicationInfo_parser = subparsers.add_parser('gai', help='Get Application Info',parents=[credentials_parser], description='The GET operation specified with the /api/applications/{domain} resource retrieves an application, where {domain} is the application domain.')
 getApplicationInfo_parser.set_defaults(func=GetApplicationInfo.make_request)
 
-updateApplicationMetaData_parser = subparsers.add_parser('uam', help='Update Application metadata',parents=[credentials_parser])
+updateApplicationMetaData_parser = subparsers.add_parser('uam', help='Update Application metadata',parents=[credentials_parser], description='The PUT method, specified with the /api/applications/{domain} resource (where {domain} is the application domain), updates your application metadata, including the number of workers and system properties. You can also use it to update an existing application. For information on how to update you application, see Updating Your Application. The update operation can update the workers, properties, muleVersion and filename properties. Properties which are not specified will not be updated.')
 updateApplicationMetaData_parser.add_argument('--properties_path',required=True)
 updateApplicationMetaData_parser.set_defaults(func=UpdateApplicationMetadata.make_request)
 
-deployApplication_parser = subparsers.add_parser('dam', help='Deploy Application method',parents=[credentials_parser])
+deployApplication_parser = subparsers.add_parser('dap', help='Deploy Application',parents=[credentials_parser], description='The POST method, specified with the /api/applications/{domain}/deploy resource (where {domain} is the application domain), allows you to deploy a Mule application zip file to CloudHub. This is commonly done after you have created the application in Mule Studio or using Maven from the command line- then you need to upload the actual zip file to CloudHub. After you have deployed the zip file, you can monitor the status of your deployment by viewing the logs.')
 deployApplication_parser.add_argument('--file_path',required=True)
 deployApplication_parser.set_defaults(func=DeployApplication.make_request)
 
