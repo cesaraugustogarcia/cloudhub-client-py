@@ -19,6 +19,7 @@ python cloudhubClient.py {subcommand} -h
     * [Deploy Application](#deployapplication)
     * [Create Application](#createapplication)
     * [Delete Application](#deleteapplication)
++ [Environments](#environments)
 + [Requirements](#requirements)
 
 ### Get Application Info <a name="getapplicationinfo"/>
@@ -89,6 +90,17 @@ Doc: http://www.mulesoft.org/documentation/display/current/Delete+Application
 ```
 python cloudhubClient.py dea -u cloudhubUser -p cloudhubPassword -a app_name
 ```
+
+## Environments <a name="environments"/>
+
+In order to use this Command Line Client with apps on different environments than the default, the environment name after a ´@´ symbol must be added to the User Name on every call.
+
+For example if you have a ***qa*** environment that you are using as a Sandbox, and want to use Get Application Info for the app created on this environment, the call should be like:
+
+```
+python cloudhubClient.py gai -u cloudhubUser@qa -p cloudhubPassword -app_name fandermole
+```
+
 
 ## Requirements <a name="requirements"/>
 
