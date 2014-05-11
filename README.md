@@ -17,6 +17,7 @@ python cloudhubClient.py {subcommand} -h
     * [Get All Applications](#getallapplications)
     * [Update Application Metadata](#updateapplicationmetadata)
     * [Deploy Application](#deployapplication)
+    * [Create Application](#createapplication)
 + [Requirements](#requirements)
 
 ### Get Application Info <a name="getapplicationinfo"/>
@@ -61,6 +62,22 @@ Doc: http://www.mulesoft.org/documentation/display/current/Deploying+a+CloudHub+
 **Usage** 
 ```
 python cloudhubClient.py dam -u cloudhubUser -p cloudhubPassword --file_path application.zip
+```
+
+### Create Application <a name="createapplication"/>
+
+Doc: http://www.mulesoft.org/documentation/display/current/Create+Application
+
+**Usage** 
+```
+python cloudhubClient.py ca´ -u cloudhubUser -p cloudhubPassword -a app_name --properties_path application.zip --mule_version 3.4.1
+```
+
+This method expects a properties file that should look like the following example:
+```
+#Endpoints configuration
+propertyname.a=propertya
+propertyname.b=propertyb
 ```
 
 ## Requirements <a name="requirements"/>

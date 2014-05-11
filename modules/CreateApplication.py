@@ -5,11 +5,11 @@ from UpdateApplicationMetadata import propertiesParser
 
 # Documentation: http://www.mulesoft.org/documentation/display/current/Create+Application
 def make_request(arguments):
-    cloudhub_user = arguments[2]
-    cloudhub_pass = arguments[3]
-    app_name = arguments[4]
-    properties_path = arguments[5]
-    mule_version = arguments[6]
+    app_name = arguments.get('app_name')
+    cloudhub_user = arguments.get('cloudhub_user')
+    cloudhub_pass = arguments.get('cloudhub_pass')
+    properties_path = arguments.get('properties_path')
+    mule_version = arguments.get('mule_version')
 
     base_url = "https://cloudhub.io/api/applications"
     headers = {"content-type": "application/json"}

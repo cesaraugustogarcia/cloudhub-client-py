@@ -5,6 +5,7 @@ import argparse
 from modules import GetApplicationInfo
 from modules import GetAllApplications
 from modules import DeployApplication
+from modules import CreateApplication
 from modules import UpdateApplicationMetadata
 from modules import GetNotifications
 from modules import GetSingleTenant
@@ -34,6 +35,11 @@ getApplicationInfo_parser.set_defaults(func=GetApplicationInfo.make_request)
 updateApplicationMetaData_parser = subparsers.add_parser('uam', help='Update Application metadata',parents=[credentials_parser], description='The PUT method, specified with the /api/applications/{domain} resource (where {domain} is the application domain), updates your application metadata, including the number of workers and system properties. You can also use it to update an existing application. For information on how to update you application, see Updating Your Application. The update operation can update the workers, properties, muleVersion and filename properties. Properties which are not specified will not be updated.')
 updateApplicationMetaData_parser.add_argument('--properties_path',required=True)
 updateApplicationMetaData_parser.set_defaults(func=UpdateApplicationMetadata.make_request)
+
+creteApplication_parser = subparsers.add_parser('cap', help='Create Application',parents=[credentials_parser], description='The POST operation specified with the /api/applications resource creates a new CloudHub application.')
+creteApplication_parser.add_argument('--properties_path',required=True)
+creteApplication_parser.add_argument('--mule_version',required=True)
+creteApplication_parser.set_defaults(func=CreateApplication.make_request)
 
 deployApplication_parser = subparsers.add_parser('dap', help='Deploy Application',parents=[credentials_parser], description='The POST method, specified with the /api/applications/{domain}/deploy resource (where {domain} is the application domain), allows you to deploy a Mule application zip file to CloudHub. This is commonly done after you have created the application in Mule Studio or using Maven from the command line- then you need to upload the actual zip file to CloudHub. After you have deployed the zip file, you can monitor the status of your deployment by viewing the logs.')
 deployApplication_parser.add_argument('--file_path',required=True)
