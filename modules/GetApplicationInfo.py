@@ -13,17 +13,22 @@ def make_request(arguments):
 
     response = requests.get(baseurl + app_name, auth=(cloudhub_user, cloudhub_pass))
 
-    json_response = json.loads(response.text)
+    if (response.status_code == 200):
+        json_response = json.loads(response.text)
 
-    pp = pprint.PrettyPrinter()
+        pp = pprint.PrettyPrinter()
 
-    def my_safe_repr(object, context, maxlevels, level):
-        typ = pprint._type(object)
-        if typ is unicode:
-            object = str(object)
-        return pprint._safe_repr(object, context, maxlevels, level)
+        def my_safe_repr(object, context, maxlevels, level):
+            typ = pprint._type(object)
+            if typ is unicode:
+                object = str(object)
+            return pprint._safe_repr(object, context, maxlevels, level)
 
-    pp.format = my_safe_repr
+        pp.format = my_safe_repr
 
-    pp.pprint(json_response)
+        pp.pprint(json_response)
+    else:
+        print "Get Application Failed. Check App name and credentials."
+
+    
 
