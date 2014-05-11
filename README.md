@@ -18,6 +18,7 @@ python cloudhubClient.py {subcommand} -h
     * [Update Application Metadata](#updateapplicationmetadata)
     * [Deploy Application](#deployapplication)
     * [Create Application](#createapplication)
+    * [Delete Application](#deleteapplication)
 + [Requirements](#requirements)
 
 ### Get Application Info <a name="getapplicationinfo"/>
@@ -78,6 +79,15 @@ This method expects a properties file that should look like the following exampl
 #Endpoints configuration
 propertyname.a=propertya
 propertyname.b=propertyb
+```
+
+### Delete Application <a name="deleteapplication"/>
+
+Doc: http://www.mulesoft.org/documentation/display/current/Delete+Application
+
+**Usage** 
+```
+python cloudhubClient.py dea -u cloudhubUser -p cloudhubPassword -a app_name
 ```
 
 ## Requirements <a name="requirements"/>

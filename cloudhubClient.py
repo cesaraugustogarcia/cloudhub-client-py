@@ -6,6 +6,7 @@ from modules import GetApplicationInfo
 from modules import GetAllApplications
 from modules import DeployApplication
 from modules import CreateApplication
+from modules import DeleteApplication
 from modules import UpdateApplicationMetadata
 from modules import GetNotifications
 from modules import GetSingleTenant
@@ -40,6 +41,9 @@ creteApplication_parser = subparsers.add_parser('cap', help='Create Application'
 creteApplication_parser.add_argument('--properties_path',required=True)
 creteApplication_parser.add_argument('--mule_version',required=True)
 creteApplication_parser.set_defaults(func=CreateApplication.make_request)
+
+deleteApplication_parser = subparsers.add_parser('dea', help='Delete Application',parents=[credentials_parser], description='The DELETE operation, specified with the /api/applications/{domain} (where {domain} is the application domain), deletes the specified application.')
+deleteApplication_parser.set_defaults(func=DeleteApplication.make_request)
 
 deployApplication_parser = subparsers.add_parser('dap', help='Deploy Application',parents=[credentials_parser], description='The POST method, specified with the /api/applications/{domain}/deploy resource (where {domain} is the application domain), allows you to deploy a Mule application zip file to CloudHub. This is commonly done after you have created the application in Mule Studio or using Maven from the command line- then you need to upload the actual zip file to CloudHub. After you have deployed the zip file, you can monitor the status of your deployment by viewing the logs.')
 deployApplication_parser.add_argument('--file_path',required=True)
