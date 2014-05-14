@@ -48,8 +48,14 @@ Doc: http://www.mulesoft.org/documentation/display/current/Get+Application
 **Usage** 
 Lets say we want to get the belonging information for an app that placed in *https://fandermole.cloudhub.io/*. Then I should run the following command:
 ```
-python cloudhubClient.py gai -u cloudhubUser -p cloudhubPassword -app_name fandermole
+python cloudhubClient.py gai -u cloudhubUser -p cloudhubPassword -a fandermole
 ```
+
+If **cloudhub** alias is configured ([Installation: Creation of **cloudhub** alias](#cloudhubalias))
+```
+cloudhub gai -u cloudhubUser -p cloudhubPassword -a fandermole
+```
+
 
 ### Get All Applications <a name="getallapplications"/>
 
@@ -60,6 +66,11 @@ Doc: http://www.mulesoft.org/documentation/display/current/List+All+Applications
 python cloudhubClient.py gaa -u cloudhubUser -p cloudhubPassword
 ```
 
+If **cloudhub** alias is configured ([Installation: Creation of **cloudhub** alias](#cloudhubalias))
+```
+cloudhub gaa -u cloudhubUser -p cloudhubPassword
+```
+
 ### Update Application Metadata <a name="updateapplicationmetadata"/>
 
 Doc: http://www.mulesoft.org/documentation/display/current/Update+Application+Metadata
@@ -68,6 +79,11 @@ Doc: http://www.mulesoft.org/documentation/display/current/Update+Application+Me
 Lets now figure out we want to update the properties for an app that is placed in ```https://fandermole.cloudhub.io/```. Then I should run the following command:
 ```
 python cloudhubClient.py uam -u cloudhubUser -p cloudhubPassword -app_name fandermole --properties_path propertiesFilePath
+```
+
+If **cloudhub** alias is configured ([Installation: Creation of **cloudhub** alias](#cloudhubalias))
+```
+cloudhub uam -u cloudhubUser -p cloudhubPassword -a fandermole --properties_path propertiesFilePath
 ```
 
 This method expects a properties file that should look like the following example:
@@ -85,13 +101,24 @@ Doc: http://www.mulesoft.org/documentation/display/current/Deploying+a+CloudHub+
 python cloudhubClient.py dam -u cloudhubUser -p cloudhubPassword --file_path application.zip
 ```
 
+If **cloudhub** alias is configured ([Installation: Creation of **cloudhub** alias](#cloudhubalias))
+```
+cloudhub dam -u cloudhubUser -p cloudhubPassword --file_path application.zip
+```
+
+
 ### Create Application <a name="createapplication"/>
 
 Doc: http://www.mulesoft.org/documentation/display/current/Create+Application
 
 **Usage** 
 ```
-python cloudhubClient.py ca´ -u cloudhubUser -p cloudhubPassword -a app_name --properties_path application.zip --mule_version 3.4.1
+python cloudhubClient.py cap -u cloudhubUser -p cloudhubPassword -a app_name --properties_path application.zip --mule_version 3.4.1
+```
+
+If **cloudhub** alias is configured ([Installation: Creation of **cloudhub** alias](#cloudhubalias))
+```
+cloudhub cap -u cloudhubUser -p cloudhubPassword -a app_name --properties_path application.zip --mule_version 3.4.1
 ```
 
 This method expects a properties file that should look like the following example:
@@ -110,6 +137,11 @@ Doc: http://www.mulesoft.org/documentation/display/current/Delete+Application
 python cloudhubClient.py dea -u cloudhubUser -p cloudhubPassword -a app_name
 ```
 
+If **cloudhub** alias is configured ([Installation: Creation of **cloudhub** alias](#cloudhubalias))
+```
+cloudhub dea -u cloudhubUser -p cloudhubPassword -a app_name
+```
+
 ## Environments <a name="environments"/>
 
 In order to use this Command Line Client with apps on different environments than the default, the environment name after a ´@´ symbol must be added to the User Name on every call.
@@ -118,6 +150,11 @@ For example if you have a ***qa*** environment that you are using as a Sandbox, 
 
 ```
 python cloudhubClient.py gai -u cloudhubUser@qa -p cloudhubPassword -app_name fandermole
+```
+
+If **cloudhub** alias is configured ([Installation: Creation of **cloudhub** alias](#cloudhubalias))
+```
+cloudhub gai -u cloudhubUser@qa -p cloudhubPassword -app_name fandermole
 ```
 
 
