@@ -2,16 +2,8 @@
 
 API Documentation: http://www.mulesoft.org/documentation/display/current/API
 
-Command list and help  
-```
-python cloudhubClient.py -h
-```
-
-Subcommands help
-```
-python cloudhubClient.py {subcommand} -h
-```
-
++ [Basic help](#basichelp)
++ [Installation: Creation of **cloudhub** alias](#cloudhubalias)
 + [Subcommands](#getapplicationinfo)
     * [Get Application Info](#getapplicationinfo)
     * [Get All Applications](#getallapplications)
@@ -21,6 +13,33 @@ python cloudhubClient.py {subcommand} -h
     * [Delete Application](#deleteapplication)
 + [Environments](#environments)
 + [Requirements](#requirements)
+
+## Basic help <a name="basichelp"/>
+
+Command list and help. Try in the cloned project:
+```
+python cloudhubClient.py -h
+```
+
+Subcommands help
+```
+python cloudhubClient.py {subcommand} -h
+```
+
+## Installation: Creation of **cloudhub** alias<a name="cloudhubalias"/>
+
+Steps mainly consists of cloning the repo and executing the install_cloudhubclient.sh bash script. So go to your work directory and execute
+```
+git clone https://github.com/cesaraugustogarcia/cloudhub-client-py
+cd cloudhub-client-py
+bash install_cloudhubclient.sh
+```
+
+Now you can use the client from everywhere in your terminal by just typing **cloudhub** instead of writing **python cloudhubClient.py** under the client directory.
+```
+cloudhub -h
+cloudhub {subcommand} -h
+```
 
 ### Get Application Info <a name="getapplicationinfo"/>
 
