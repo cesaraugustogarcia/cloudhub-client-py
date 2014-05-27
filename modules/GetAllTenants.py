@@ -20,29 +20,45 @@ def save_all_tenants():
 	      "offset": 0
 	}
 
-	response = requests.get(baseurl + app_domain + api_call_paths['tenants'], params=query_string, headers=headers, auth=(cloudhub_user, cloudhub_pass))
+	page_counter = 0
+	has_next = True
 
-	if (response.status_code == 200):
-		json_response = json.loads(response.text)
-		tenant_list = json_response['data']
+	# Automatic Pagination
+	while (has_next):
+		query_string["offset"] = (page_counter * query_string["limit"])
+
+		response = requests.get(baseurl + app_domain + api_call_paths['tenants'], params=query_string, headers=headers, auth=(cloudhub_user, cloudhub_pass))
+		
+		if (response.status_code == 200):
+			json_response = json.loads(response.text)
+			tenant_list = json_response['data']
+		
+			for tenant in tenant_list:
+				tenant_id = tenant['id']
+				print "Saving tenant. ID = " + tenant_id
+				print ""
+				print "Tenant information"
+				print "******************"
+				print "ID: " + tenant_id
+				print "Name: " + tenant['name']
+				print "E-mail: " + tenant['email']
+				print "Created: " + tenant['created']
+				print "Enabled: " + str(tenant['enabled'])
+				propertiesSaver(tenant['configuration'], tenant_id + ".properties")
+				print "Properties saved in \'" + tenant_id + ".properties\' file."
+				print "******************"
+				print ""
+
+			page_counter += 1 
+			if (json_response["total"] < (page_counter * query_string["limit"])):
+				has_next = False
+
+		else:
+			print "Retrieve operation failed."
+			has_next = False
 	
-		for tenant in tenant_list:
-			tenant_id = tenant['id']
-			print "Saving tenant. ID = " + tenant_id
-			print ""
-			print "Tenant information"
-			print "******************"
-			print "ID: " + tenant_id
-			print "Name: " + tenant['name']
-			print "E-mail: " + tenant['email']
-			print "Created: " + tenant['created']
-			print "Enabled: " + str(tenant['enabled'])
-			propertiesSaver(tenant['configuration'], tenant_id + ".properties")
-			print "Properties saved in \'" + tenant_id + ".properties\' file."
-			print "******************"
-			print ""
-	else:
-		print "Retrieve operation failed."
+		pass
+
 
 # Utils
 def propertiesSaver(configuration, file_path):
