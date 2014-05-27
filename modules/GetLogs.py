@@ -53,7 +53,7 @@ def filter_logs(json_response, message_filter, output_format, cols, max_size, pa
 	if output_format == "CSV":
 		cols_list = cols.split(",")
 		if page_counter == 0:
-			print cols.lower()
+			print cols
 
 		for line in json_response["data"]:
 			# Line keys:
@@ -63,7 +63,7 @@ def filter_logs(json_response, message_filter, output_format, cols, max_size, pa
 			output_dict = {}
 			output_dict["message"] = line_message[:int(max_size)].lstrip()
 			output_dict["priority"] = line["priority"]
-			output_dict["sequenceNumber"] = line["sequenceNumber"]
+			output_dict["sequencenumber"] = line["sequenceNumber"]
 			output_dict["timestamp"] = datetime.datetime.fromtimestamp(int(time_stamp_api)).strftime('%Y-%m-%d %H:%M:%S')
 
 			if message_filter in line_message:
