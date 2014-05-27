@@ -4,7 +4,7 @@ import json
 # Documentation: http://www.mulesoft.org/documentation/display/current/Notifications
 
 # Constants
-baseurl = 'https://cloudhub.io/api/notifications/'
+baseurl = 'https://cloudhub.io/api/applications/'
 headers = {'content-type': 'application/json'}
 app_domain = ""
 cloudhub_user = ""
@@ -17,7 +17,6 @@ cloudhub_pass = ""
 # Priority: "INFO", "WARN" or "ERROR"
 def get_notifications(tenant_id, status, priority, message_filter, output_format):
 	query_string  =  {
-	      "domain": app_domain,
 	      "status": status,
 	      "limit": 10,
 	      "offset": 0
@@ -32,7 +31,7 @@ def get_notifications(tenant_id, status, priority, message_filter, output_format
 	# Automatic Pagination
 	while (has_next):
 		query_string["offset"] = (page_counter * query_string["limit"])
-		response = requests.get(baseurl, params=query_string, headers=headers, auth=(cloudhub_user, cloudhub_pass))
+		response = requests.get(baseurl + app_domain + "/notifications", params=query_string, headers=headers, auth=(cloudhub_user, cloudhub_pass))
 		json_response = json.loads(response.text)
 
 		filter_notifications(json_response, priority, message_filter, output_format, page_counter)
@@ -54,7 +53,7 @@ def filter_notifications(json_response, priority, message_filter, output_format,
 			if line["priority"] == priority:
 				line_message = line["message"]
 				if message_filter in line_message:
-					print str(line["createdAt"]) + "," + unicode(line_message)
+					print str(line["createdAt"]) + "," + line["tenantId"] + "," + unicode(line_message)
 
 # Entry point
 def make_request(arguments):
