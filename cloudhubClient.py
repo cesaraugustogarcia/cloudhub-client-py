@@ -54,7 +54,7 @@ getNotifications_parser.add_argument('-t','--tenant-id',dest='tenant_id',require
 getNotifications_parser.add_argument('-s','--status',dest='status',required=False,default="unread",help="Filter notifications by status (unread -default-, read or all)")
 getNotifications_parser.add_argument('-p','--priority',dest='priority',required=False,default="ERROR",help="Filter notifications by priority (ERROR -default-, WARN or INFO)")
 getNotifications_parser.add_argument('-m','--message-filter',dest='message_filter',required=False,default="",help="Show notifications that match the string in message.")
-getNotifications_parser.add_argument('-c','--columns',dest='cols',metavar='COL1,COL2',required=False,default="createdAt,message",help="Columns to include in output file. Values are: message, priority, sequenceNumber, timestamp")
+getNotifications_parser.add_argument('-c','--columns',dest='cols',metavar='COL1,COL2',required=False,default="createdAt,message",help="Columns to include in output file. Values are: domain, transactionId, read, priority, href, message, tenantId, id, createdAt")
 getNotifications_parser.add_argument('-ms','--max-size',dest='max_size',required=False,default="512",help="Crop messages size. Default is 512 chars.")
 getNotifications_parser.add_argument('-o','--output-format',dest='output_format',required=False,default="CSV",help="Output file format.")
 getNotifications_parser.set_defaults(func=GetNotifications.make_request)
@@ -92,7 +92,7 @@ getLogs_parser.add_argument('-e','--end-date',dest='end_date',required=True,help
 getLogs_parser.add_argument('-p','--priority',dest='priority',required=False,default="INFO",help="The log level priority to return. Values are: DEBUG, INFO, WARN, ERROR, SYSTEM, CONSOLE.")
 getLogs_parser.add_argument('-m','--message-filter',dest='message_filter',required=False,default="",help="Include only messages containing the specified string.")
 getLogs_parser.add_argument('-o','--output-format',dest='output_format',required=False,default="CSV",help="Output file format.")
-getLogs_parser.add_argument('-c','--columns',dest='cols',metavar='COL1,COL2',required=False,default="timestamp,message",help="Columns to include in output file. Values are: domain, transactionId, read, priority, href, message, tenantId, id, createdAt")
+getLogs_parser.add_argument('-c','--columns',dest='cols',metavar='COL1,COL2',required=False,default="timestamp,message",help="Columns to include in output file. Values are: message, priority, sequenceNumber, timestamp")
 getLogs_parser.add_argument('-ms','--max-size',dest='max_size',required=False,default="512",help="Crop messages size. Default is 512 chars.")
 getLogs_parser.set_defaults(func=GetLogs.make_request)
 
