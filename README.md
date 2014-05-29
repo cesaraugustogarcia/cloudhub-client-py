@@ -3,7 +3,8 @@
 API Documentation: http://www.mulesoft.org/documentation/display/current/API
 
 + [Basic help](#basichelp)
-+ [Installation: Creation of **cloudhub** alias](#cloudhubalias)
++ [Creation of **cloudhub** alias](#cloudhubalias)
+	* [Mac OS X](#chaliasmacosx)
 + [Subcommands](#getapplicationinfo)
     * [Get Application Info](#getapplicationinfo)
     * [Get All Applications](#getallapplications)
@@ -26,20 +27,28 @@ Subcommands help
 python cloudhubClient.py {subcommand} -h
 ```
 
-## Installation: Creation of **cloudhub** alias<a name="cloudhubalias"/>
+## Creation of **cloudhub** alias<a name="cloudhubalias"/>
 
-Steps mainly consists of cloning the repo and executing the install_cloudhubclient.sh bash script. So go to your work directory and execute
-```
-git clone https://github.com/cesaraugustogarcia/cloudhub-client-py
-cd cloudhub-client-py
-bash install_cloudhubclient.sh
-```
-
-Now you can use the client from everywhere in your terminal by just typing **cloudhub** instead of writing **python cloudhubClient.py** under the client directory.
+Setting an alias to run the client can provide a better experience. You should be able to use the client from everywhere in your terminal by just typing **cloudhub** instead of writing **python cloudhubClient.py** under the client directory.
 ```
 cloudhub -h
 cloudhub {subcommand} -h
 ```
+
+### Mac OS X <a name="chaliasmacosx"/> 
+
+Steps from Command Line
+```
+git clone https://github.com/cesaraugustogarcia/cloudhub-client-py
+cd cloudhub-client-py
+mkdir ~/.cloudhubclient
+cp -rf . ~/.cloudhubclient/
+chmod +x ~/.cloudhubclient/cloudhubClient.py
+source ~/.profile
+```
+
+This steps copy the project on your User directory (~). In some cases the last step could depend on your terminal, for example ```source ~/.bash_profile``` could be required instead.
+
 
 ### Get Application Info <a name="getapplicationinfo"/>
 
@@ -51,10 +60,6 @@ Lets say we want to get the belonging information for an app that placed in *htt
 python cloudhubClient.py gai -u cloudhubUser -p cloudhubPassword -a fandermole
 ```
 
-If **cloudhub** alias is configured ([Installation: Creation of **cloudhub** alias](#cloudhubalias))
-```
-cloudhub gai -u cloudhubUser -p cloudhubPassword -a fandermole
-```
 
 
 ### Get All Applications <a name="getallapplications"/>
@@ -66,10 +71,6 @@ Doc: http://www.mulesoft.org/documentation/display/current/List+All+Applications
 python cloudhubClient.py gaa -u cloudhubUser -p cloudhubPassword
 ```
 
-If **cloudhub** alias is configured ([Installation: Creation of **cloudhub** alias](#cloudhubalias))
-```
-cloudhub gaa -u cloudhubUser -p cloudhubPassword
-```
 
 ### Update Application Metadata <a name="updateapplicationmetadata"/>
 
@@ -81,10 +82,6 @@ Lets now figure out we want to update the properties for an app that is placed i
 python cloudhubClient.py uam -u cloudhubUser -p cloudhubPassword -app_name fandermole --properties_path propertiesFilePath
 ```
 
-If **cloudhub** alias is configured ([Installation: Creation of **cloudhub** alias](#cloudhubalias))
-```
-cloudhub uam -u cloudhubUser -p cloudhubPassword -a fandermole --properties_path propertiesFilePath
-```
 
 This method expects a properties file that should look like the following example:
 ```
@@ -101,11 +98,6 @@ Doc: http://www.mulesoft.org/documentation/display/current/Deploying+a+CloudHub+
 python cloudhubClient.py dam -u cloudhubUser -p cloudhubPassword --file_path application.zip
 ```
 
-If **cloudhub** alias is configured ([Installation: Creation of **cloudhub** alias](#cloudhubalias))
-```
-cloudhub dam -u cloudhubUser -p cloudhubPassword --file_path application.zip
-```
-
 
 ### Create Application <a name="createapplication"/>
 
@@ -116,10 +108,6 @@ Doc: http://www.mulesoft.org/documentation/display/current/Create+Application
 python cloudhubClient.py cap -u cloudhubUser -p cloudhubPassword -a app_name --properties_path application.zip --mule_version 3.4.1
 ```
 
-If **cloudhub** alias is configured ([Installation: Creation of **cloudhub** alias](#cloudhubalias))
-```
-cloudhub cap -u cloudhubUser -p cloudhubPassword -a app_name --properties_path application.zip --mule_version 3.4.1
-```
 
 This method expects a properties file that should look like the following example:
 ```
@@ -137,10 +125,6 @@ Doc: http://www.mulesoft.org/documentation/display/current/Delete+Application
 python cloudhubClient.py dea -u cloudhubUser -p cloudhubPassword -a app_name
 ```
 
-If **cloudhub** alias is configured ([Installation: Creation of **cloudhub** alias](#cloudhubalias))
-```
-cloudhub dea -u cloudhubUser -p cloudhubPassword -a app_name
-```
 
 ## Environments <a name="environments"/>
 
@@ -150,11 +134,6 @@ For example if you have a ***qa*** environment that you are using as a Sandbox, 
 
 ```
 python cloudhubClient.py gai -u cloudhubUser@qa -p cloudhubPassword -app_name fandermole
-```
-
-If **cloudhub** alias is configured ([Installation: Creation of **cloudhub** alias](#cloudhubalias))
-```
-cloudhub gai -u cloudhubUser@qa -p cloudhubPassword -app_name fandermole
 ```
 
 
