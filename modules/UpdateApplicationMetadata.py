@@ -17,23 +17,18 @@ def propertiesParser(file_path):
 
 # Documentation: http://www.mulesoft.org/documentation/display/current/Update+Application+Metadata
 def make_request(arguments):
-    if len(arguments) == 6:
-        app_name = arguments.get('app_name')
-        cloudhub_user = arguments.get('cloudhub_user')
-        cloudhub_pass = arguments.get('cloudhub_pass')
-        properties_path = arguments.get('properties_path')
-        
-        baseurl = "https://cloudhub.io/api/applications/"
+    app_name = arguments.get('app_name')
+    cloudhub_user = arguments.get('cloudhub_user')
+    cloudhub_pass = arguments.get('cloudhub_pass')
+    properties_path = arguments.get('properties_path')
+    
+    baseurl = "https://cloudhub.io/api/applications/"
 
-        headers = {"content-type": "application/json"}
+    headers = {"content-type": "application/json"}
 
-        body = propertiesParser(properties_path)
+    body = propertiesParser(properties_path)
 
-        response = requests.put(baseurl + app_name, data=json.dumps(body), auth=(cloudhub_user, cloudhub_pass),headers=headers)
+    response = requests.put(baseurl + app_name, data=json.dumps(body), auth=(cloudhub_user, cloudhub_pass),headers=headers)
 
-        print response
-        print response.text
-
-    else:
-        print "Missing parameters. Should be like 'python cloudhubClient.py updateApplicationMetada accountUser accountPassword appDomain propertiesPath'"
-
+    print response
+    print response.text
