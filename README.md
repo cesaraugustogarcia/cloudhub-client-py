@@ -43,6 +43,7 @@ git clone https://github.com/cesaraugustogarcia/cloudhub-client-py
 cd cloudhub-client-py
 mkdir ~/.cloudhubclient
 cp -rf . ~/.cloudhubclient/
+echo "alias cloudhub='python ~/.cloudhubclient/cloudhubClient.py'" >> ~/.bash_profile
 chmod +x ~/.cloudhubclient/cloudhubClient.py
 source ~/.profile
 ```
