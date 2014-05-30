@@ -5,14 +5,14 @@ API Documentation: http://www.mulesoft.org/documentation/display/current/API
 + [Basic help](#basichelp)
 + [Creation of **cloudhub** alias](#cloudhubalias)
 	* [Mac OS X](#chaliasmacosx)
-+ [Subcommands](#getapplicationinfo)
++ [Subcommands](#subcommands)
     * [Get Application Info](#getapplicationinfo)
     * [Get All Applications](#getallapplications)
     * [Update Application Metadata](#updateapplicationmetadata)
     * [Deploy Application](#deployapplication)
     * [Create Application](#createapplication)
     * [Delete Application](#deleteapplication)
-+ [Environments](#environments)
++ [Environments (Sandbox)](#environments)
 + [Requirements](#requirements)
 
 ## Basic help <a name="basichelp"/>
@@ -50,6 +50,8 @@ source ~/.profile
 
 This steps copy the project on your User directory (~). In some cases the last step could depend on your terminal, for example ```source ~/.bash_profile``` could be required instead.
 
+## Subcommands <a name="subcommands"/>
+
 
 ### Get Application Info <a name="getapplicationinfo"/>
 
@@ -58,9 +60,8 @@ Doc: http://www.mulesoft.org/documentation/display/current/Get+Application
 **Usage** 
 Lets say we want to get the belonging information for an app that placed in *https://fandermole.cloudhub.io/*. Then I should run the following command:
 ```
-python cloudhubClient.py gai -u cloudhubUser -p cloudhubPassword -a fandermole
+python cloudhubClient.py gai -cu cloudhubUser -cp cloudhubPassword -an fandermole
 ```
-
 
 
 ### Get All Applications <a name="getallapplications"/>
@@ -69,7 +70,7 @@ Doc: http://www.mulesoft.org/documentation/display/current/List+All+Applications
 
 **Usage** 
 ```
-python cloudhubClient.py gaa -u cloudhubUser -p cloudhubPassword
+python cloudhubClient.py gaa -cu cloudhubUser -cp cloudhubPassword
 ```
 
 
@@ -80,7 +81,7 @@ Doc: http://www.mulesoft.org/documentation/display/current/Update+Application+Me
 **Usage** 
 Lets now figure out we want to update the properties for an app that is placed in ```https://fandermole.cloudhub.io/```. Then I should run the following command:
 ```
-python cloudhubClient.py uam -u cloudhubUser -p cloudhubPassword -app_name fandermole --properties_path propertiesFilePath
+python cloudhubClient.py uam -cu cloudhubUser -cp cloudhubPassword -an fandermole --properties_path propertiesFilePath
 ```
 
 
@@ -96,7 +97,7 @@ Doc: http://www.mulesoft.org/documentation/display/current/Deploying+a+CloudHub+
 
 **Usage** 
 ```
-python cloudhubClient.py dam -u cloudhubUser -p cloudhubPassword --file_path application.zip
+python cloudhubClient.py dam -cu cloudhubUser -cp cloudhubPassword --file_path application.zip
 ```
 
 
@@ -106,7 +107,7 @@ Doc: http://www.mulesoft.org/documentation/display/current/Create+Application
 
 **Usage** 
 ```
-python cloudhubClient.py cap -u cloudhubUser -p cloudhubPassword -a app_name --properties_path application.zip --mule_version 3.4.1
+python cloudhubClient.py cap -cu cloudhubUser -cp cloudhubPassword -an app_name --properties_path application.zip --mule_version 3.4.1
 ```
 
 
@@ -123,18 +124,18 @@ Doc: http://www.mulesoft.org/documentation/display/current/Delete+Application
 
 **Usage** 
 ```
-python cloudhubClient.py dea -u cloudhubUser -p cloudhubPassword -a app_name
+python cloudhubClient.py dea -cu cloudhubUser -cp cloudhubPassword -an app_name
 ```
 
 
-## Environments <a name="environments"/>
+## Environments (Sandbox) <a name="environments"/>
 
 In order to use this Command Line Client with apps on different environments than the default, the environment name after a ´@´ symbol must be added to the User Name on every call.
 
 For example if you have a ***qa*** environment that you are using as a Sandbox, and want to use Get Application Info for the app created on this environment, the call should be like:
 
 ```
-python cloudhubClient.py gai -u cloudhubUser@qa -p cloudhubPassword -app_name fandermole
+python cloudhubClient.py gai -cu cloudhubUser@qa -cp cloudhubPassword -an fandermole
 ```
 
 

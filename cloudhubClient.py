@@ -26,8 +26,8 @@ credentials_parser.add_argument('-cp','--cloudhub-pass',metavar='PASSWORD',dest=
 credentials_parser.add_argument('-an','--app-name',metavar='APP_NAME',dest='app_name',required=True)
 
 getAllApplications_parser = subparsers.add_parser('gaa', help='Get All Applications', description='The GET operation specified with the /api/applications resource returns a list of all applications for your account. The resulting JSON contains a list of application objects.')
-getAllApplications_parser.add_argument('-u',metavar='cloudhub_user',dest='cloudhub_user',required=True)
-getAllApplications_parser.add_argument('-p',metavar='cloudhub_pass',dest='cloudhub_pass',required=True)
+getAllApplications_parser.add_argument('-cu','--cloudhub-user',metavar='cloudhub_user',dest='cloudhub_user',required=True)
+getAllApplications_parser.add_argument('-cp','--cloudhub-pass',metavar='cloudhub_pass',dest='cloudhub_pass',required=True)
 getAllApplications_parser.set_defaults(func=GetAllApplications.make_request)
 
 getApplicationInfo_parser = subparsers.add_parser('gai', help='Get Application Info',parents=[credentials_parser], description='The GET operation specified with the /api/applications/{domain} resource retrieves an application, where {domain} is the application domain.')
