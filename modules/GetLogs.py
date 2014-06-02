@@ -74,6 +74,26 @@ def filter_logs(json_response, message_filter, output_format, cols, max_size, pa
 						output_line += ","
 				print output_line
 
+def transformDate(input_date):
+	if input_date == "NOW":
+		input_date = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.000Z')
+	elif input_date == "TODAY":
+		input_date = datetime.datetime.utcnow().strftime('%Y-%m-%dT00:00:00.000Z')
+	elif input_date == "YESTERDAY":
+		delta = datetime.timedelta(days=1)
+		input_date = (datetime.datetime.utcnow() - delta).strftime('%Y-%m-%dT00:00:00.000Z')
+	elif input_date == "LAST_HOUR":
+		delta = datetime.timedelta(hours=1)
+		input_date = (datetime.datetime.utcnow() - delta).strftime('%Y-%m-%dT%H:%M:%S.000Z')
+	elif input_date == "LAST_WEEK":
+		delta = datetime.timedelta(days=7)
+		input_date = (datetime.datetime.utcnow() - delta).strftime('%Y-%m-%dT%H:%M:%S.000Z')
+	elif input_date == "LAST_MONTH":
+		delta = datetime.timedelta(days=30)
+		input_date = (datetime.datetime.utcnow() - delta).strftime('%Y-%m-%dT%H:%M:%S.000Z')
+
+	return input_date
+
 # Entry point
 def make_request(arguments):
 	global app_domain
@@ -92,5 +112,8 @@ def make_request(arguments):
 	output_format = arguments.get('output_format')
 	cols = arguments.get('cols')
 	max_size = arguments.get('max_size')
+
+	start_date = transformDate(start_date)
+	end_date = transformDate(end_date)
 
 	get_logs(tenant_id, start_date, end_date, priority, message_filter, output_format, cols, max_size)
